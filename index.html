@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>client</title>
+</head>
+<body>
+    <div>
+        クライアント
+    </div>
+    <script>
+        let xhr = new XMLHttpRequest(); 
+
+        xhr.onreadystatechange = function(){
+            switch(xhr.readyState){
+                case 0:
+                    console.log('Uninitialzed!');
+                    break;
+                case 1:
+                    console.log(xhr);
+                    console.log('loading...');
+                    break;
+                case 2:
+                    console.log('loadend');
+                    break;
+                case 3:
+                    console.log('interactive...'+xhr.response.length+'byte');
+                    break;
+                case 4:
+                    if(xhr.status == 200 || xhr.status == 304){
+                        console.log('COMPLETE!:'+data);
+                    } else{
+                        console.log('Failed. HttpStatus:'+xhr.statusText);
+                    }
+                    break;
+                }
+        }
+        
+        xhr.open('POST','http://192.168.1.7:3001',false);
+        xhr.setRequestHeader('Context-Type','application/x-www-form-urlencoded');
+        xhr.abort();
+    </script>
+</body>
+</html>
